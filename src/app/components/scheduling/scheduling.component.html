@@ -1,0 +1,168 @@
+<div class="calendar">
+  <div class="">
+    <div class="container-buttons-view">
+      <button
+        [ngClass]="{
+          'button-view-active': currentView == 'month',
+          'button-view-inactive': currentView == 'week'
+        }"
+        (click)="toggleView('month')"
+      >
+        Més
+      </button>
+      <button
+        [ngClass]="{
+          'button-view-active': currentView == 'week',
+          'button-view-inactive': currentView == 'month'
+        }"
+        (click)="toggleView('week')"
+      >
+        Semana
+      </button>
+    </div>
+  </div>
+  <!-- Selector de mes -->
+  @if (currentView == 'month') {
+  <div class="calendar-header">
+    <span (click)="prevMonth()" class="material-symbols-outlined arrow">
+      arrow_back_ios
+    </span>
+    <h2 class="month-name">
+      {{ currentMonthName | titlecase }} {{ currentYear }}
+    </h2>
+    <span (click)="nextMonth()" class="material-symbols-outlined arrow">
+      arrow_forward_ios
+    </span>
+  </div>
+
+  <!-- Días de la semana -->
+  <div class="calendar-grid-header">
+    <div *ngFor="let day of weekDays">{{ day }}</div>
+  </div>
+
+  <!-- Días del mes -->
+  <div class="calendar-grid">
+    <div
+      *ngFor="let day of daysInMonth"
+      [class.placeholder]="day.isPlaceholder"
+      [class.today]="!day.isPlaceholder && day.isToday"
+      [class.has-event]="!day.isPlaceholder && day.hasEvent"
+      (click)="(!day.isPlaceholder)"
+      class="box-date"
+    >
+      <div class="container-day-number">
+        <span *ngIf="!day.isPlaceholder">{{ day.date.getDate() }}</span>
+        @if (role != 'Student') {
+        <span
+          (click)="selectDay(day)"
+          class="material-symbols-outlined icon-plus"
+        >
+          add
+        </span>
+
+        }
+      </div>
+      <div class="item-container">
+        @for (data of day.data; track data) { @if (role == 'Management' || role
+        == 'Student') {
+        <div
+          (click)="selectItem(data, $event)"
+          class="item-class"
+          [ngClass]="data.reservationStatus || data.status"
+        >
+          <span>
+            {{ formatHour(data.hourInit) }} /
+            {{ data?.nameClass | titlecase }}
+          </span>
+        </div>
+        } @else {
+        <div
+          (click)="selectItem(data, $event)"
+          class="item-class"
+          [ngClass]="data.classStatus"
+        >
+          <span>
+            {{ formatHour(data.hourInit) }} /
+            {{ data?.nameClass | titlecase }}
+          </span>
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+
+  } @else if (currentView == 'week') {
+  <div class="calendar-header">
+    <span (click)="prevWeek()" class="material-symbols-outlined arrow">
+      arrow_back_ios
+    </span>
+
+    <h2>{{ currentMonthByWeek | titlecase }} {{ currentYear }}</h2>
+    <span (click)="nextWeek()" class="material-symbols-outlined arrow">
+      arrow_forward_ios
+    </span>
+  </div>
+
+  <div class="calendar-grid-header">
+    @for (day of currentWeek; track day) {
+    <div>
+      <div style="margin-bottom: 25px">
+        <div>{{ getDayOfWeek(day) }}</div>
+        <div>{{ getDateOfWeek(day) }}</div>
+      </div>
+    </div>
+
+    }
+  </div>
+  <!-- Días de la semana -->
+  <div class="calendar-grid">
+    <div
+      *ngFor="let day of daysInMonth"
+      [class.placeholder]="day.isPlaceholder"
+      [class.today]="!day.isPlaceholder && day.isToday"
+      [class.has-event]="!day.isPlaceholder && day.hasEvent"
+      (click)="(!day.isPlaceholder)"
+      class="box-date-week"
+    >
+      <div class="container-day-number">
+        <span *ngIf="!day.isPlaceholder">{{ day.date.getDate() }}</span>
+        @if (role != 'Student') {
+        <span
+          (click)="selectDay(day)"
+          class="material-symbols-outlined icon-plus"
+        >
+          add
+        </span>
+
+        }
+      </div>
+      <div class="item-container">
+        @for (data of day.data; track data) { @if (role == 'Management' || role
+        == 'Student') {
+        <div
+          (click)="selectItem(data, $event)"
+          class="item-class"
+          [ngClass]="data.reservationStatus || data.status"
+        >
+          <span>
+            {{ formatHour(data.hourInit) }} /
+            {{ data?.nameClass | titlecase }}
+          </span>
+        </div>
+        } @else {
+        <div
+          (click)="selectItem(data, $event)"
+          class="item-class"
+          [ngClass]="data.classStatus"
+        >
+          <span>
+            {{ formatHour(data.hourInit) }} /
+            {{ data?.nameClass | titlecase }}
+          </span>
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+  }
+</div>

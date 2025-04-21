@@ -1,0 +1,57 @@
+<div class="container-menu">
+  <div class="side-nav">
+    <div>
+      <div class="container-logo">
+        <img class="logo" src="../../../assets/icons/logo_login.png" alt="" />
+      </div>
+
+      <h4 class="menu-title">Menú</h4>
+    </div>
+
+    <div>
+      <nav>
+        <ul class="list-menu">
+          @for (item of filteredItemsNav; track item) {
+          <div
+            (click)="closeMenu()"
+            class="container-item"
+            [routerLink]="item.url"
+          >
+            <span class="material-symbols-outlined"> {{ item.icon }} </span>
+            <li class="list-item">{{ item.name }}</li>
+          </div>
+
+          }
+        </ul>
+      </nav>
+    </div>
+
+    @if (role == 'Student') { @if (classesPersonalized >= 0) {
+    <div class="classes">
+      <span>Clases personalizadas restantes : {{ classesPersonalized }}</span>
+    </div>
+    } @if (classesGroup >= 0) {
+    <div class="classes">
+      <span>Clases grupales restantes : {{ classesGroup }}</span>
+    </div>
+    } }
+
+    <div class="container-dots">
+      @for (item of itemsDots; track item) {
+      <div>
+        <span [class]="item.class" class="point material-symbols-outlined">
+          trip_origin
+        </span>
+        <span class="name-dots">{{ item.class | titlecase }}</span>
+      </div>
+
+      }
+    </div>
+
+    <div class="footer-side">
+      <p class="text-side">
+        Developed by <strong class="link-Q">QCodely</strong>
+      </p>
+    </div>
+  </div>
+</div>

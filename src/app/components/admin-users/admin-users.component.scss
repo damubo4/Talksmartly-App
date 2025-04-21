@@ -1,0 +1,38 @@
+.title {
+  text-align: center;
+}
+
+.container-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+.container-item:hover {
+  transition: 0.1s;
+  color: blue;
+}
+
+.list-menu {
+  list-style: none;
+  color: black;
+  padding: 0;
+  font-size: 13px;
+}
+
+.button-add {
+  background-color: #00a99d;
+  color: rgb(255, 255, 255);
+  font-size: small;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}

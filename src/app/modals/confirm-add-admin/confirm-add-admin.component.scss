@@ -1,0 +1,33 @@
+.container {
+  width: 30vw;
+  padding: 30px;
+  text-align: center;
+}
+
+.button-yes {
+  background-color: #0cc2aa;
+  color: rgb(255, 255, 255);
+  font-size: large;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.button-no {
+  background-color: #aa2f2f;
+  color: rgb(255, 255, 255);
+  font-size: large;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,79 @@
+.container-login {
+  background-color: #0867d8;
+  height: 100vh;
+  display: flex;
+  background-image: url("../../../../assets/brain-image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-card {
+  margin: auto;
+  width: 350px;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px !important;
+}
+
+.field {
+  width: 100%;
+}
+
+.link-container {
+  margin-top: -20px;
+  margin-bottom: 20px;
+  text-align: end;
+}
+
+.link {
+  color: #00a99d;
+  text-decoration: underline;
+  font-size: small;
+  cursor: pointer;
+}
+
+.text-register {
+  color: #ffffff;
+  font-size: small;
+}
+
+.button-login {
+  background-color: #00a99d;
+  color: rgb(255, 255, 255);
+  font-size: large;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.button-login:disabled {
+  cursor: unset;
+}
+
+.icon-input {
+  color: #00a99d;
+}
+
+.icon-email {
+  margin-right: 12px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 40px;
+}

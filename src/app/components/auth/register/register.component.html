@@ -1,0 +1,99 @@
+<section class="container-login">
+  <div class="login-card">
+    <img class="logo" src="../../../../assets/icons/logo_login.png" alt="" />
+    <h2 class="title">Ingrese sus datos para el registro</h2>
+    <form [formGroup]="FormRegister">
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="name" matInput />
+          <span class="icon-input icon material-symbols-outlined" matSuffix
+            >person</span
+          >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Apellido</mat-label>
+          <input formControlName="lastName" matInput />
+          <span class="icon-input icon material-symbols-outlined" matSuffix
+            >person</span
+          >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Contraseña</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            [type]="hide_1 ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide_1 = !hide_1"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide_1"
+          >
+            <span class="icon-input material-symbols-outlined">{{
+              hide_1 ? "visibility_off" : "visibility"
+            }}</span>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Confirmar contraseña</mat-label>
+          <input
+            formControlName="repeat_password"
+            matInput
+            [type]="hide_2 ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide_2 = !hide_2"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide_2"
+          >
+            <span class="icon-input material-symbols-outlined">{{
+              hide_2 ? "visibility_off" : "visibility"
+            }}</span>
+          </button>
+        </mat-form-field>
+      </div>
+      @if (textError) {
+      <span class="text-error">Las contraseñas no coinciden</span>
+      }
+
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Teléfono</mat-label>
+          <input formControlName="phone" matInput />
+          <span class="icon-input icon material-symbols-outlined" matSuffix
+            >phone</span
+          >
+        </mat-form-field>
+      </div>
+    </form>
+
+    <button
+      (click)="register()"
+      [disabled]="FormRegister.invalid || spinner || samePasswords"
+      class="button-register"
+    >
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Registrarme}
+    </button>
+
+    <span class="text-register"
+      >¿Ya tienes una cuenta?
+      <span routerLink="/login" class="link">Iniciar sesión</span>
+    </span>
+  </div>
+</section>

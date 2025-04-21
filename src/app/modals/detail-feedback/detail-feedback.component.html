@@ -1,0 +1,95 @@
+<div class="container">
+  <h2 class="title">Detalle del feedback</h2>
+
+  <div class="container-item">
+    <div></div>
+    <strong>Fecha de evaluación:</strong>
+    {{ dataFeedback?.evaluationDate | date : "YYYY-MM-dd HH:mm" }}
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Comunicación:</strong>
+      <strong class="subtitle"
+        >Nota: {{ dataFeedback?.communicationScore }}</strong
+      >
+    </div>
+    <div
+      style="
+        border: 1px solid lightgray;
+        padding: 5px;
+        background-color: aliceblue;
+      "
+    >
+      {{ dataFeedback?.communication }}
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Vocabulario:</strong>
+      <strong class="subtitle"
+        >Nota: {{ dataFeedback?.vocabularyScore }}</strong
+      >
+    </div>
+    <div
+      style="
+        border: 1px solid lightgray;
+        padding: 5px;
+        background-color: aliceblue;
+      "
+    >
+      {{ dataFeedback?.vocabulary }}
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Gramática:</strong>
+      <strong class="subtitle">Nota: {{ dataFeedback?.grammarScore }}</strong>
+    </div>
+    <div
+      style="
+        border: 1px solid lightgray;
+        padding: 5px;
+        background-color: aliceblue;
+      "
+    >
+      {{ dataFeedback?.grammar }}
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Pronunciación:</strong>
+      <strong class="subtitle">Nota: {{ dataFeedback?.phoneticsScore }}</strong>
+    </div>
+    <div
+      style="
+        border: 1px solid lightgray;
+        padding: 5px;
+        background-color: aliceblue;
+      "
+    >
+      {{ dataFeedback?.phonetics }}
+    </div>
+  </div>
+
+  <div class="container-item">
+    <strong>Comentarios:</strong>
+    <div
+      style="
+        border: 1px solid lightgray;
+        padding: 5px;
+        background-color: aliceblue;
+      "
+    >
+      {{ dataFeedback?.comments }}
+    </div>
+  </div>
+
+  <div>
+    <strong style="margin-right: 5px">Promedio:</strong
+    >{{ dataFeedback?.averageScore }}
+  </div>
+</div>

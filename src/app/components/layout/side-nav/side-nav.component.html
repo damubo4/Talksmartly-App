@@ -1,0 +1,72 @@
+<div class="side-nav">
+  <div>
+    <div class="container-logo">
+      <img class="logo" src="../../../../assets/icons/logo_login.png" alt="" />
+    </div>
+
+    <h4 class="menu-title">Menú</h4>
+  </div>
+
+  <div>
+    <nav>
+      <ul class="list-menu">
+        @for (item of filteredItemsNav; track item) {
+        <div class="container-item" [routerLink]="item.url">
+          <span class="material-symbols-outlined"> {{ item.icon }} </span>
+          <li class="list-item">{{ item.name }}</li>
+        </div>
+
+        }
+      </ul>
+    </nav>
+  </div>
+
+  @if (role == 'Student') { @if (classesPersonalized >= 0) {
+  <h3 class="title-summary">Clases restantes</h3>
+  <div class="classes">
+    <span>Personalizadas: {{ classesPersonalized }}</span>
+  </div>
+  } @if (classesGroup >= 0) {
+  <div class="classes">
+    <span>Grupales: {{ classesGroup }}</span>
+  </div>
+  } } @else if (role == 'Management') {
+  <div class="classes">
+    <span
+      >Clases reservadas disponibles : {{ dataAdmin?.reservedAvailable }}</span
+    >
+  </div>
+  <div class="classes">
+    <span>Clases canceladas : {{ dataAdmin?.reservedCancelled }}</span>
+  </div>
+  <div class="classes">
+    <span>Clases reservadas : {{ dataAdmin?.reservedClasses }}</span>
+  </div>
+  <div class="classes">
+    <span>Clases pendientes : {{ dataAdmin?.reservedPending }}</span>
+  </div>
+  <div class="classes">
+    <span>Clases totales : {{ dataAdmin?.totalClasses }}</span>
+  </div>
+  }
+
+  <div class="container-dots">
+    @for (item of filteredItemsDots; track item) {
+    <div>
+      <span [class]="item.class" class="point material-symbols-outlined">
+        trip_origin
+      </span>
+      <span class="name-dots">{{ item.class | titlecase }}</span>
+    </div>
+
+    }
+  </div>
+
+  @if (role == 'Student') {
+  <div class="info-suscription">
+    <p>Tu suscripción termina el</p>
+    <span>{{ sinComillas(endDate) }}</span>
+  </div>
+
+  }
+</div>

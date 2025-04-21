@@ -1,0 +1,42 @@
+.button-student {
+  margin-right: 10px;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button-student:hover {
+  background-color: gray;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+
+.container-inputs {
+  display: flex;
+  gap: 20px;
+}
+
+.table {
+  overflow-x: auto;
+  height: 72vh;
+}
+
+.icon-summary {
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container-inputs {
+    gap: unset;
+  }
+
+  .input-search {
+    display: none;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="container-admin-users">
+  <h2 class="title">Administración de usuarios</h2>
+  <div>
+    <nav>
+      <ul class="list-menu">
+        @for (item of itemsNav; track item) {
+        <div class="container-item" [routerLink]="item.url">
+          <li style="margin: 0">
+            <button class="button-add">{{ item.name }}</button>
+          </li>
+        </div>
+        }
+      </ul>
+    </nav>
+  </div>
+</div>

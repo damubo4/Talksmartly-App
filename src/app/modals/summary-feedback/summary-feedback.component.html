@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="title">Rsumen</h2>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Total clases agendadas: </strong>
+      <span>{{ summary?.totalScheduledClasses }}</span>
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Clases evaluadas: </strong>
+      <span>{{ summary?.evaluated }}</span>
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Clases no evaluadas: </strong>
+      <span>{{ summary?.notEvaluated }}</span>
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Fecha inicial:</strong>
+      <span>{{ summary?.startDate }}</span>
+    </div>
+  </div>
+
+  <div class="container-item">
+    <div class="container-item-inner">
+      <strong>Fecha final: </strong>
+      <span>{{ summary?.endDate }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+.chart {
+  margin-bottom: 80px;
+}
+
+table {
+  width: 100%;
+  min-width: 600px; /* Ancho mínimo para evitar que se comprima demasiado */
+}
+
+.truncate-cell {
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) */
+  max-width: 60px; /* Ancho máximo de la celda */
+}
+
+h2 {
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
+
+.noData {
+  font-size: 25px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.detail-options {
+  cursor: pointer;
+}
+
+.detail-options:hover {
+  color: #00a99d;
+}
+
+.table {
+  overflow-x: auto;
+}

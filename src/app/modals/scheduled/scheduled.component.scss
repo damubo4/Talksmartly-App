@@ -1,0 +1,119 @@
+.container {
+  width: 60vw;
+  padding: 30px;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.container h4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.form {
+  margin: 25px 0;
+  position: relative;
+}
+
+.container-section {
+  display: flex;
+  gap: 20px;
+}
+
+.container-section mat-form-field {
+  width: 100%;
+}
+
+.button {
+  background-color: #0084ff;
+  color: rgb(255, 255, 255);
+  font-size: large;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: unset;
+}
+
+.info-class {
+  margin-bottom: 20px;
+}
+
+.button-link-class {
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px #bdbdbd solid;
+  margin-top: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button-link-class:hover {
+  background-color: gray;
+  color: white;
+}
+
+.buttons-actions-class {
+  display: flex;
+  gap: 6px;
+}
+
+.input-feedback {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.container-score {
+  text-align: end;
+}
+
+.input-score {
+  width: 30%;
+}
+
+.radio-group {
+  margin-bottom: 15px;
+}
+
+.container-title-admin {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.container-title-admin span {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.container-title-admin span:hover {
+  cursor: pointer;
+  color: #0084ff;
+}
+
+.name-student {
+  text-align: center;
+  font-weight: 800;
+  background-color: rgba(0, 132, 255, 0.6);
+  border-radius: 5px;
+  color: white;
+}
+
+.container-students-feedback {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.label-field-feedback {
+  font-weight: 600;
+}

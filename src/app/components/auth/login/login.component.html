@@ -1,0 +1,59 @@
+<section class="container-login">
+  <div (keyup.enter)="login()" class="login-card">
+    <img class="logo" src="../../../../assets/icons/logo_login.png" alt="" />
+    <h2 class="title">Ingrese sus datos para iniciar sesión</h2>
+    <form [formGroup]="FormLogin">
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Email</mat-label>
+          <input formControlName="user" matInput />
+          <span
+            class="icon-input icon-email material-symbols-outlined"
+            matSuffix
+            >mail</span
+          >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="field">
+          <mat-label>Contraseña</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            type="button"
+          >
+            <span class="icon-input material-symbols-outlined">{{
+              hide ? "visibility_off" : "visibility"
+            }}</span>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="link-container">
+        <span routerLink="/recover-password" class="link"
+          >Olvidé mi contraseña</span
+        >
+        <br />
+      </div>
+    </form>
+    <button
+      [disabled]="FormLogin.invalid || spinner"
+      class="button-login"
+      type="submit"
+      (click)="login()"
+    >
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Ingresar}
+    </button>
+  </div>
+</section>

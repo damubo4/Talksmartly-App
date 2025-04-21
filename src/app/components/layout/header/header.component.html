@@ -1,0 +1,47 @@
+<div class="container-header">
+  <div class="container-burger-menu">
+    <span (click)="menuModal()" class="material-symbols-outlined menu-burger">
+      menu
+    </span>
+    <div class="container-title">
+      <h2>{{ title }}</h2>
+    </div>
+  </div>
+  <div class="container-user">
+    <div>
+      <div>
+        <h2 class="name">Hola {{ userData.name | titlecase }}</h2>
+      </div>
+      <span class="title-dashboard">
+        {{ typeUser(role) }} @if (currentLevel) {
+        <span>
+          {{ levels(currentLevel) }}
+        </span>
+
+        }
+      </span>
+    </div>
+    <div>
+      <span
+        class="material-symbols-outlined icon-user"
+        [matMenuTriggerFor]="menu"
+      >
+        account_circle
+      </span>
+      <span
+        (click)="
+          redirectToWhatsApp(
+            '573105575041',
+            'Hola, necesito información acerca de la aplicación'
+          )
+        "
+        class="material-symbols-outlined icon-user"
+      >
+        help
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>Log Out</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

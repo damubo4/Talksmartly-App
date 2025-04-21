@@ -1,0 +1,72 @@
+.container-file {
+  width: 200px;
+  height: 200px;
+  border: 12px #00a99b solid;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  border-top: 40px #00a99d solid;
+}
+
+.container-file:hover {
+  cursor: pointer;
+}
+
+.icon {
+  color: red;
+  position: absolute;
+  top: 26%;
+  left: 26%;
+  font-size: 90px;
+}
+
+.name-file {
+  width: 95%;
+  padding: 5px;
+  display: block;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  font-size: large;
+}
+
+::ng-deep .mat-mdc-tab-body-wrapper {
+  height: 82vh;
+}
+
+::ng-deep .mat-mdc-tab-body-content {
+  padding: 30px 0;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  height: min-content !important;
+}
+
+.icon-add {
+  cursor: pointer;
+}
+
+.icon-add:hover {
+  color: rgb(167, 167, 167);
+}
+
+.container-files {
+  display: block;
+}
+
+.icon-download {
+  position: absolute;
+  top: -35px;
+  right: -11px;
+  color: white;
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+.image-brain {
+  position: absolute;
+  top: 34%;
+  width: 50%;
+  left: 23%;
+}

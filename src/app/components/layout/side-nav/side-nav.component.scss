@@ -1,0 +1,123 @@
+.side-nav {
+  margin: 0;
+  padding: 20px;
+  display: grid;
+  min-height: 98vh;
+  grid-template-rows: auto 1fr auto;
+  background-color: rgb(0 90 178);
+}
+
+.container-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+.container-item:hover {
+  transform: translateX(10px);
+  transition: 0.3s;
+}
+
+.text-side {
+  font-size: 17px;
+  color: #f0f0f0;
+  text-align: center;
+  margin: 15px !important;
+}
+
+.container-logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 166px;
+}
+
+.menu-title {
+  margin: 0;
+  color: #f0f0f0;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.list-menu {
+  list-style: none;
+  color: #f0f0f0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.link-Q {
+  color: orange;
+}
+
+.link-Q:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.list-item {
+  margin: 0;
+}
+
+.point {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.available {
+  color: #00de34;
+}
+
+.full {
+  color: #ff0019;
+}
+
+.cancelled {
+  color: #383d41;
+}
+
+.pending {
+  color: #ffb300;
+}
+
+.reserved {
+  color: #a200ff;
+}
+
+.evaluated {
+  color: #0084ff;
+}
+
+.container-dots {
+  margin: 15px 0;
+}
+
+.name-dots {
+  color: white;
+  font-size: 15px;
+}
+
+.classes span {
+  color: white;
+}
+
+.info-suscription {
+  color: white;
+  margin-top: 20px;
+  text-align: center;
+  margin: auto;
+}
+
+.info-suscription p {
+  margin: 0 !important;
+}
+
+.title-summary {
+  color: white;
+  margin: 8px 0 !important;
+}

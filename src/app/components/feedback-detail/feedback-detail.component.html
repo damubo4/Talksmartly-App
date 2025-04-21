@@ -1,0 +1,372 @@
+<div style="overflow-y: scroll; height: 88vh">
+  <h2>{{ studentName }}</h2>
+  <form [formGroup]="monthForm">
+    <mat-form-field style="margin-right: 20px">
+      <mat-select id="month" formControlName="month">
+        <mat-option *ngFor="let month of months" [value]="month.value">{{
+          month.name | titlecase
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select id="year" formControlName="year">
+        <mat-option *ngFor="let year of years" [value]="year">{{
+          year
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  @if (noData) {
+  <div class="noData">
+    {{ noData }}
+  </div>
+  } @else {
+  <div class="chart" id="chart1">
+    <apx-chart
+      [series]="chartOptions1.series"
+      [chart]="chartOptions1.chart"
+      [xaxis]="chartOptions1.xaxis"
+      [stroke]="chartOptions1.stroke"
+      [tooltip]="chartOptions1.tooltip"
+      [dataLabels]="chartOptions1.dataLabels"
+    ></apx-chart>
+  </div>
+
+  } @if (role == 'Management' || role == 'Teacher') {
+  <div class="mat-elevation-z8">
+    <table
+      style="overflow-x: scroll"
+      mat-table
+      [dataSource]="dataSourceAdmin"
+      matSort
+    >
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+        <td class="truncate-cell" mat-cell *matCellDef="let i = index">
+          {{ getRowIndex(i) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduleDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.scheduleDate }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hourInit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.hourInit }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nameClass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nombre de clase
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.nameClass }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="professorName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profesor</th>
+        <td class="truncate-cell" mat-cell *matCellDef="let row">
+          {{ row.professorName }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="attendance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Asiste</th>
+        <td mat-cell *matCellDef="let row">
+          {{ attendance(row.feedback[0]?.attendance) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="evaluationDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha evaluación
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback[0]?.evaluationDate | date : "dd-MM HH:mm" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Feedback</th>
+        <td mat-cell *matCellDef="let row">
+          @if (row.status == 'SI') {
+          <span
+            (click)="details(row)"
+            class="material-symbols-outlined detail-options"
+          >
+            visibility
+          </span>
+
+          }
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="communication">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Comunicación</th>
+          <td
+            [matTooltip]="row.feedback[0]?.detailsFeedback?.communication"
+            class="truncate-cell"
+            mat-cell
+            *matCellDef="let row"
+          >
+            {{ row.feedback[0]?.detailsFeedback?.communication }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="communicationScore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.feedback[0]?.detailsFeedback?.communicationScore }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="grammar">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Gramática</th>
+          <td
+            [matTooltip]="row.feedback[0]?.detailsFeedback?.grammar"
+            class="truncate-cell"
+            mat-cell
+            *matCellDef="let row"
+          >
+            {{ row.feedback[0]?.detailsFeedback?.grammar }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="grammarScore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.feedback[0]?.detailsFeedback?.grammarScore }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="phonetics">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pronunciación</th>
+          <td
+            [matTooltip]="row.feedback[0]?.detailsFeedback?.phonetics"
+            class="truncate-cell"
+            mat-cell
+            *matCellDef="let row"
+          >
+            {{ row.feedback[0]?.detailsFeedback?.phonetics }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="phoneticsScore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.feedback[0]?.detailsFeedback?.phoneticsScore }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="vocabulary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Vocabulario</th>
+          <td
+            [matTooltip]="row.feedback[0]?.detailsFeedback?.vocabulary"
+            class="truncate-cell"
+            mat-cell
+            *matCellDef="let row"
+          >
+            {{ row.feedback[0]?.detailsFeedback?.vocabulary }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="vocabularyScore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.feedback[0]?.detailsFeedback?.vocabularyScore }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="averageScore">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Promedio</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.feedback[0]?.detailsFeedback?.averageScore }}
+          </td>
+        </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAdmin"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAdmin"></tr>
+    </table>
+
+    <mat-paginator
+      pageSize="5"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+
+  } @else if (role == 'Student') {
+  <div class="mat-elevation-z8 table">
+    <table
+      style="overflow-x: scroll"
+      mat-table
+      [dataSource]="dataSourceStudent"
+      matSort
+    >
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+        <td class="truncate-cell" mat-cell *matCellDef="let i = index">
+          {{ getRowIndex(i) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduleDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.scheduleDate | date : "dd" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hourInit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.hourInit }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nameClass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nombre de clase
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.nameClass }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="attendance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Asiste</th>
+        <td mat-cell *matCellDef="let row">
+          {{ attendance(row.attendance) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="evaluationDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha evaluación
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row?.evaluationDate | date : "dd-MM HH:mm" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Feedback</th>
+        <td mat-cell *matCellDef="let row">
+          @if (row.status == 'SI') {
+          <span
+            (click)="details(row)"
+            class="material-symbols-outlined detail-options"
+          >
+            visibility
+          </span>
+
+          }
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="communication">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Comunicación</th>
+        <td
+          [matTooltip]="row.feedback?.communication"
+          class="truncate-cell"
+          mat-cell
+          *matCellDef="let row"
+        >
+          {{ row.feedback?.communication }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="communicationScore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback?.communicationScore }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="grammar">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gramática</th>
+        <td
+          [matTooltip]="row.feedback?.grammar"
+          class="truncate-cell"
+          mat-cell
+          *matCellDef="let row"
+        >
+          {{ row.feedback?.grammar }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="grammarScore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback?.grammarScore }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phonetics">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pronunciación</th>
+        <td
+          [matTooltip]="row.feedback?.phonetics"
+          class="truncate-cell"
+          mat-cell
+          *matCellDef="let row"
+        >
+          {{ row.feedback?.phonetics }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneticsScore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback?.phoneticsScore }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vocabulary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vocabulario</th>
+        <td
+          [matTooltip]="row.feedback?.vocabulary"
+          class="truncate-cell"
+          mat-cell
+          *matCellDef="let row"
+        >
+          {{ row.feedback?.vocabulary }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vocabularyScore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback?.vocabularyScore }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="averageScore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Promedio</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.feedback?.averageScore }}
+        </td>
+      </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsStudent"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsStudent"></tr>
+    </table>
+
+    <mat-paginator
+      pageSize="5"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+
+  }
+  <!--The content below is only a placeholder and can be replaced.-->
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------------------- -->
+</div>

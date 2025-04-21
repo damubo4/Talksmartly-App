@@ -1,0 +1,50 @@
+.template {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.side-nav {
+  background-color: rgb(0 90 178);
+}
+
+.template-right {
+  display: grid;
+  grid-template-rows: 1fr 11fr;
+}
+
+.dashboard {
+  background-color: white;
+  margin: 0;
+  padding: 20px;
+  height: -webkit-fill-available;
+  width: 78vw;
+}
+
+.header-nav {
+  align-self: center;
+  background-color: rgb(0 90 178);
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .template {
+    display: flex;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
+  .container-side-nav {
+    display: none;
+  }
+
+  .dashboard {
+    width: 96vw;
+    overflow-y: hidden;
+  }
+
+  .header-nav {
+    width: 100vw;
+  }
+}

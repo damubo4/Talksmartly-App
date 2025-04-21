@@ -1,0 +1,211 @@
+.calendar {
+  width: 100%;
+  margin: auto;
+  height: 100%;
+  text-align: center;
+  height: 100%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.calendar-grid-header,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-grid {
+  max-height: 100%;
+  height: 77%;
+  overflow: scroll;
+}
+
+.calendar-grid-header div {
+  font-weight: bold;
+}
+
+.box-date {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  height: 9vh;
+  min-width: 39px;
+}
+
+.box-date:hover {
+  background-color: #f0f8ffb2;
+}
+
+.box-date.today {
+  background-color: #f0f8ffb2;
+}
+
+.box-date.has-event {
+  background-color: rgba(255, 166, 0, 0.661);
+}
+
+.box-date-week {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  height: calc(100vh - 265px);
+  position: relative;
+  min-width: 39px;
+}
+
+.item-class {
+  margin-bottom: 5px;
+  padding: 2px;
+  border-radius: 2px;
+  font-size: smaller;
+}
+
+.item-container {
+  overflow-y: auto;
+  max-height: 60%;
+}
+
+.item-class:hover {
+  margin-bottom: 5px;
+  background-color: rgb(233, 233, 233);
+  color: black;
+}
+
+/* Estilo general del scroll */
+::-webkit-scrollbar {
+  width: 3px; /* Ancho del scroll vertical */
+  height: 8px; /* Altura del scroll horizontal */
+}
+
+/* Estilo de la pista (fondo del scroll) */
+::-webkit-scrollbar-track {
+  background: transparent; /* Color de fondo */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo del "pulgarcito" (barra móvil) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color de la barra */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo del "pulgarcito" al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la barra al hacer hover */
+}
+
+.point {
+  font-size: 10px;
+}
+
+.AVAILABLE {
+  background-color: #00de34;
+}
+
+.FULL {
+  background-color: #ff0019;
+  color: white;
+}
+
+.CANCELLED {
+  background-color: #383d41;
+  color: white;
+}
+
+.PENDING {
+  background-color: #ffb300;
+}
+
+.RESERVED {
+  background-color: #a200ff;
+  color: white;
+}
+
+.CONFIRMED {
+  background-color: #a200ff;
+  color: white;
+}
+
+.EVALUATED {
+  background-color: #0084ff;
+  color: white;
+}
+
+.container-day-number {
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+}
+
+.icon-plus {
+  cursor: pointer;
+  color: black;
+  transition: 0.3s;
+  font-size: medium;
+}
+
+.icon-plus:hover {
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+
+.container-buttons-view {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+
+.arrow {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+
+.button-view-active {
+  background-color: #0967d8;
+  padding: 5px 20px;
+  border-radius: 22px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.button-view-inactive {
+  background-color: #f4f4f4;
+  padding: 5px 20px;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+
+.month-name {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .item-class {
+    font-size: x-small;
+  }
+}

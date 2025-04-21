@@ -1,0 +1,134 @@
+@if (role == 'Management') {
+<div>
+  <span
+    routerLink="/dashboard/material-add"
+    class="icon-add material-symbols-outlined"
+  >
+    add_box
+  </span>
+</div>
+}
+<mat-tab-group [selectedIndex]="selectedTabIndex">
+  <mat-tab [disabled]="introductory.length == 0" label="Introductory">
+    @for (item of introductory; track item) {
+    <div class="container-file">
+      <span
+        class="material-symbols-outlined icon-download"
+        [matMenuTriggerFor]="menu"
+      >
+        more_vert
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="downloadFile(item.url)" mat-menu-item>Open</button>
+        <button
+          [disabled]="role != 'Management'"
+          (click)="deleteFile('INTRODUCTORY', item.nameFile)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+      <span class="name-file">{{ item.nameFile }}</span>
+      <img class="image-brain" src="../../../assets/icons/cerebro.svg" alt="" />
+    </div>
+    }
+
+    <!-- app.component.html -->
+  </mat-tab>
+  <mat-tab [disabled]="beginners.length == 0" label="Beginners">
+    @for (item of beginners; track item) {
+    <div class="container-file">
+      <span
+        class="material-symbols-outlined icon-download"
+        [matMenuTriggerFor]="menu"
+      >
+        more_vert
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="downloadFile(item.url)" mat-menu-item>Open</button>
+        <button
+          [disabled]="role != 'Management'"
+          (click)="deleteFile('BEGINNERS', item.nameFile)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+      <span class="name-file">{{ item.nameFile }}</span>
+      <img class="image-brain" src="../../../assets/icons/cerebro.svg" alt="" />
+    </div>
+    }
+  </mat-tab>
+  <mat-tab [disabled]="pre_intermediate.length == 0" label="Pre intermediate">
+    @for (item of pre_intermediate; track item) {
+    <div class="container-file">
+      <span
+        class="material-symbols-outlined icon-download"
+        [matMenuTriggerFor]="menu"
+      >
+        more_vert
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="downloadFile(item.url)" mat-menu-item>Open</button>
+        <button
+          [disabled]="role != 'Management'"
+          (click)="deleteFile('PREINTERMEDIATE', item.nameFile)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+      <span class="name-file">{{ item.nameFile }}</span>
+      <img class="image-brain" src="../../../assets/icons/cerebro.svg" alt="" />
+    </div>
+    }
+  </mat-tab>
+  <mat-tab [disabled]="intermediate.length == 0" label="Intermediate">
+    @for (item of intermediate; track item) {
+    <div class="container-file">
+      <span
+        class="material-symbols-outlined icon-download"
+        [matMenuTriggerFor]="menu"
+      >
+        more_vert
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="downloadFile(item.url)" mat-menu-item>Open</button>
+        <button
+          [disabled]="role != 'Management'"
+          (click)="deleteFile('INTERMEDIATE', item.nameFile)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+      <span class="name-file">{{ item.nameFile }}</span>
+      <img class="image-brain" src="../../../assets/icons/cerebro.svg" alt="" />
+    </div>
+    }
+  </mat-tab>
+  <mat-tab [disabled]="advanced.length == 0" label="Advanced">
+    @for (item of advanced; track item) {
+    <div class="container-file">
+      <span
+        class="material-symbols-outlined icon-download"
+        [matMenuTriggerFor]="menu"
+      >
+        more_vert
+      </span>
+      <mat-menu #menu="matMenu">
+        <button (click)="downloadFile(item.url)" mat-menu-item>Open</button>
+        <button
+          [disabled]="role != 'Management'"
+          (click)="deleteFile('ADVANCED', item.nameFile)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+      <span class="name-file">{{ item.nameFile }}</span>
+      <img class="image-brain" src="../../../assets/icons/cerebro.svg" alt="" />
+    </div>
+    }
+  </mat-tab>
+</mat-tab-group>

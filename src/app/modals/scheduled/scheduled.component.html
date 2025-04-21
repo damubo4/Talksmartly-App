@@ -1,0 +1,398 @@
+<div class="container">
+  @if (role == 'Student') {
+  <h4>{{ data?.name || "Detalles de la clase" }}</h4>
+  <div class="info-class">
+    <span
+      >{{ formattedDate(data?.scheduleDate) | titlecase }} /
+      {{ formatHour(data.hourInit) }}</span
+    >
+    <div>
+      <span> Estado: {{ statusClass(data?.reservationStatus) }}</span>
+    </div>
+    @if (data.reservationStatus !== 'CANCELLED' && data.reservationStatus !==
+    'AVAILABLE' && data.reservationStatus !== 'PENDING' ) {
+    <div>
+      <button (click)="goClass(data.urlClass)" class="button">
+        Unirme a esta clase
+      </button>
+    </div>
+    }
+  </div>
+
+  <div>
+    @if (data?.reservationStatus == 'AVAILABLE') {
+    <button (click)="scheduleClassStudent()" class="button">
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Agendarme a esta clase}
+    </button>
+    } @else if (data?.reservationStatus == 'RESERVED' || data?.reservationStatus
+    == 'PENDING') {
+    <button (click)="cancelClassStudent()" class="button-link-class">
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Cancelar esta clase}
+    </button>
+    }
+  </div>
+
+  } @else if (role == 'Teacher' && data.type == 'schedule-teacher-view') {
+  <h4>{{ data?.name || "Detalles de la clase" }}</h4>
+  <div class="info-class">
+    <div>
+      <span
+        >{{ formattedDate(data?.data.scheduleDate) | titlecase }} /
+        {{ formatHour(data.data.hourInit) }}</span
+      >
+    </div>
+    <div>
+      <span>
+        <strong>Estado:</strong> {{ statusClass(data.data.classStatus) }}</span
+      >
+    </div>
+    <div>
+      <span> <strong>Nivel:</strong> {{ levels(data.data.currentLevel) }}</span>
+    </div>
+    <div>
+      <span>
+        <strong>Tipo de clase:</strong>
+        {{ typeClass(data.data.classType) }}</span
+      >
+    </div>
+    <div class="buttons-actions-class">
+      <button (click)="goClass(data.data.urlClass)" class="button-link-class">
+        Ir a esta clase
+      </button>
+      <button
+        [disabled]="buttonFeedback"
+        (click)="viewFeedbackFn()"
+        class="button-link-class"
+      >
+        Realizar feedback
+      </button>
+    </div>
+  </div>
+  } @else if (role == 'Management' && (data.type == 'schedule-admin-create' ||
+  data.type == 'schedule-admin-edit')) { @if (data.type ==
+  'schedule-admin-create') {
+  <h4>Agendar</h4>
+  } @else {
+  <div class="container-title-admin">
+    <h4>Editar agenda</h4>
+    <span
+      (click)="deleteClassAdmin(data.data.id)"
+      class="material-symbols-outlined"
+    >
+      delete
+    </span>
+  </div>
+  }
+  <span>{{ formattedDate(data?.date) | titlecase }} </span>
+
+  <form class="form" [formGroup]="scheduleFormAdmin">
+    <div class="container-section">
+      <mat-form-field>
+        <mat-label>Tipo de clase</mat-label>
+        <mat-select formControlName="classType">
+          @for (item of classType; track item) {
+          <mat-option [value]="item.data">{{ item.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Hora inicio</mat-label>
+        <input
+          formControlName="hourInit"
+          matInput
+          [matTimepicker]="picker"
+          matTimepickerMin="05:00"
+          matTimepickerMax="22:00"
+        />
+        <mat-timepicker-toggle matIconSuffix [for]="picker" />
+        <mat-timepicker interval="1h" #picker />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Hora fin</mat-label>
+        <input
+          formControlName="hourFinish"
+          matInput
+          [matTimepicker]="picker1"
+          matTimepickerMin="05:00"
+          matTimepickerMax="22:00"
+        />
+        <mat-timepicker-toggle matIconSuffix [for]="picker1" />
+        <mat-timepicker interval="1h" #picker1 />
+      </mat-form-field>
+    </div>
+
+    <div class="container-section">
+      <mat-form-field>
+        <mat-label>Nivel</mat-label>
+        <mat-select formControlName="currentLevel">
+          @for (item of currentLevel; track item) {
+          <mat-option [value]="item.data">{{ item.name }}</mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" placeholder="Nombre" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Profesor</mat-label>
+        <mat-select formControlName="teacher">
+          @for (item of teachers; track item) {
+          <mat-option [value]="item.id">{{ item.name }}</mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="container-section">
+      <mat-form-field>
+        <mat-label>Estudiante/s</mat-label>
+        <mat-select multiple formControlName="students">
+          @for (item of studentsData; track item) {
+          <mat-option [value]="item.id">{{ item.name }}</mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+
+    <div class="container-section">
+      <!-- <mat-form-field>
+        <input
+          type="text"
+          placeholder="Buscar"
+          matInput
+          formControlName="students"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          @for (option of studentsData; track option) {
+          <mat-option [value]="option.id">{{ option.name }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field> -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Selecciona estudiantes</mat-label>
+        <mat-select formControlName="students" multiple>
+          <!-- Filtro de búsqueda -->
+          <!-- <div class="container-section">
+            <mat-form-field appearance="fill" class="full-width">
+              <input
+                matInput
+                type="text"
+                placeholder="Buscar..."
+                (click)="$event.stopPropagation()"
+                [formControl]="searchControl"
+              />
+            </mat-form-field>
+          </div> -->
+
+          <!-- Lista filtrada -->
+          <mat-option *ngFor="let option of studentsData" [value]="option.id">
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Url clase</mat-label>
+        <input matInput formControlName="urlClass" placeholder="Url" />
+      </mat-form-field>
+    </div>
+
+    <button
+      (click)="createClassAdmin()"
+      class="button"
+      [disabled]="scheduleFormAdmin.invalid || spinner"
+    >
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Guardar}
+    </button>
+  </form>
+  } @else if (role == 'Teacher') {
+  <h4>Crear disponibilidad</h4>
+  <div class="info-class">
+    <span>{{ formattedDate(data?.date) | titlecase }} </span>
+  </div>
+
+  <form class="form" [formGroup]="scheduleFormTeacher">
+    <div class="container-section">
+      <mat-form-field>
+        <mat-label>Hora inicio</mat-label>
+        <input
+          formControlName="hourInit"
+          matTimepickerMin="05:00"
+          matTimepickerMax="22:00"
+          matInput
+          [matTimepicker]="picker"
+        />
+        <mat-timepicker-toggle matIconSuffix [for]="picker" />
+        <mat-timepicker interval="1h" #picker />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Hora fin</mat-label>
+        <input
+          formControlName="hourFinish"
+          [matTimepicker]="picker1"
+          matTimepickerMin="05:00"
+          matInput
+          matTimepickerMax="22:00"
+        />
+        <mat-timepicker-toggle matIconSuffix [for]="picker1" />
+        <mat-timepicker interval="1h" #picker1 />
+      </mat-form-field>
+    </div>
+
+    <div class="container-section">
+      <mat-form-field>
+        <mat-label>Nivel</mat-label>
+        <mat-select formControlName="currentLevel">
+          @for (item of currentLevel; track item) {
+          <mat-option [value]="item.data">{{ item.name }}</mat-option>
+
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button
+      (click)="createClassTeacher()"
+      class="button"
+      [disabled]="scheduleFormTeacher.invalid || spinner"
+    >
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else {Guardar}
+    </button>
+  </form>
+
+  } @if (viewFeedback) {
+
+  <section class="container-students-feedback">
+    @for (item of studentFormsFeedback; track item) {
+    <div style="width: 100%">
+      <h3 class="name-student">
+        {{ item.value.student.name }}
+      </h3>
+      <form class="form" [formGroup]="item">
+        <div class="radio-group">
+          <mat-slide-toggle color="primary" formControlName="attendance"
+            >Asistencia</mat-slide-toggle
+          >
+        </div>
+        @if (item.get('attendance')?.value == true) {
+        <mat-label class="label-field-feedback">Comunicación</mat-label>
+        <div class="container-score">
+          <mat-form-field class="input-score">
+            <mat-label>Nota</mat-label>
+            <input
+              matInput
+              formControlName="communicationScore"
+              type="number"
+              max="5"
+              min="1"
+              step="0.5"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="input-feedback">
+          <mat-label>Observación</mat-label>
+          <textarea formControlName="communication" matInput></textarea>
+        </mat-form-field>
+
+        <mat-label class="label-field-feedback">Vocabulario</mat-label>
+        <div class="container-score">
+          <mat-form-field class="input-score">
+            <mat-label>Nota</mat-label>
+            <input
+              matInput
+              formControlName="vocabularyScore"
+              type="number"
+              max="5"
+              min="1"
+              step="0.5"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="input-feedback">
+          <mat-label>Observación</mat-label>
+          <textarea formControlName="vocabulary" matInput></textarea>
+        </mat-form-field>
+
+        <mat-label class="label-field-feedback">Gramática</mat-label>
+        <div class="container-score">
+          <mat-form-field class="input-score">
+            <mat-label>Nota</mat-label>
+            <input
+              matInput
+              formControlName="grammarScore"
+              type="number"
+              max="5"
+              min="1"
+              step="0.5"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="input-feedback">
+          <mat-label>Observación</mat-label>
+          <textarea formControlName="grammar" matInput></textarea>
+        </mat-form-field>
+
+        <mat-label class="label-field-feedback">Pronunciación</mat-label>
+        <div class="container-score">
+          <mat-form-field class="input-score">
+            <mat-label>Nota</mat-label>
+            <input
+              matInput
+              formControlName="phoneticsScore"
+              type="number"
+              max="5"
+              min="1"
+              step="0.5"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="input-feedback">
+          <mat-label>Observación</mat-label>
+          <textarea formControlName="phonetics" matInput></textarea>
+        </mat-form-field>
+
+        <mat-label class="label-field-feedback">Comentarios</mat-label>
+        <mat-form-field class="input-feedback">
+          <textarea formControlName="comments" matInput></textarea>
+        </mat-form-field>
+
+        }
+      </form>
+    </div>
+
+    }
+  </section>
+  <button (click)="submitFormsFeedback()" class="button">
+    @if (spinner) {
+    <span class="loader"></span>
+    } @else {Enviar}
+  </button>
+
+  }
+</div>

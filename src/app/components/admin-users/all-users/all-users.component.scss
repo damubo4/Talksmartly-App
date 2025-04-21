@@ -1,0 +1,55 @@
+.title {
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+
+.no-data {
+  text-align: center !important;
+}
+
+.action-icon-delete:hover {
+  cursor: pointer;
+  color: orange;
+}
+
+.action-icon-edit:hover {
+  cursor: pointer;
+  color: #00a99d;
+}
+
+.container-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button-add {
+  background-color: #00a99d;
+  color: rgb(255, 255, 255);
+  font-size: small;
+  width: 100%;
+  outline: 0;
+  border: none;
+  padding: 5px 8px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.container-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table {
+  overflow-x: auto !important;
+  height: 70vh;
+}
+
+@media (max-width: 1024px) {
+  .container-search {
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+  }
+}

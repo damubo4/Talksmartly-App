@@ -1,0 +1,120 @@
+<div class="container">
+  <div>
+    <span
+      routerLink="/dashboard/all-users"
+      class="material-symbols-outlined icon-back"
+    >
+      keyboard_backspace
+    </span>
+    <h2 class="title">{{ title }} usuario</h2>
+  </div>
+  <form class="form" [formGroup]="FormUser">
+    <div class="container-input">
+      <mat-form-field class="field">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Rol de usuario</mat-label>
+
+        <mat-select formControlName="role" matInput>
+          @for (item of types; track item) {
+          <mat-option [value]="item.value">{{ item.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (isStudent) {
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Nombre paquete</mat-label>
+        <input formControlName="namepackage" matInput />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Fecha de inicio</mat-label>
+        <input formControlName="startDate" matInput [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Fecha fin</mat-label>
+        <input formControlName="endDate" matInput [matDatepicker]="picker1" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Numero de clases grupales</mat-label>
+        <input type="number" formControlName="usedGroupClasses" matInput />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Numero de clases personalizadas</mat-label>
+        <input
+          type="number"
+          formControlName="usedPersonalizedClasses"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Numero máximo de cancelaciones</mat-label>
+        <input type="number" formControlName="maxCancellations" matInput />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Nivel</mat-label>
+
+        <mat-select formControlName="currentLevel" matInput>
+          @for (item of currentLevel; track item) {
+          <mat-option [value]="item.value">{{ item.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="field">
+        <mat-label>Precio</mat-label>
+        <input formControlName="price" matInput />
+      </mat-form-field>
+    </div>
+
+    }
+    <button
+      (click)="actionUser()"
+      [disabled]="FormUser.invalid"
+      class="button-add"
+    >
+      @if (spinner) {
+      <span class="loader"></span>
+      } @else if(isEdit) {Editar} @else {Registrar}
+    </button>
+  </form>
+</div>
