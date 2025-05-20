@@ -161,10 +161,8 @@
 }
 
 .container-buttons-view {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 10px;
+  position: absolute;
+  left: 0;
 }
 
 .arrow {
@@ -202,6 +200,14 @@
 
 .month-name {
   font-size: 16px;
+}
+
+.container-headers-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: relative;
 }
 
 @media (max-width: 768px) {

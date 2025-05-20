@@ -5,6 +5,13 @@
   background-image: url("../../../../assets/brain-image.png");
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
+}
+
+.section-language {
+  position: absolute;
+  top: 7px;
+  right: 7px;
 }
 
 .login-card {
@@ -76,4 +83,24 @@ form {
 .logo {
   width: 300px;
   margin-bottom: 40px;
+}
+
+.input-language {
+  background-color: transparent !important;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-label {
+  color: white;
+  font-size: large;
+}
+
+option {
+  font-size: large;
+}
+
+select {
+  font-size: large;
 }

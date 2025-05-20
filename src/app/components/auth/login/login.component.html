@@ -1,4 +1,14 @@
 <section class="container-login">
+  <!-- <div class="section-language">
+    <div class="input-language">
+      <label class="input-label">Idioma</label>
+      <select placeholder="Language">
+        @for (language of languages; track language) {
+        <option [value]="language">{{ language }}</option>
+        }
+      </select>
+    </div>
+  </div> -->
   <div (keyup.enter)="login()" class="login-card">
     <img class="logo" src="../../../../assets/icons/logo_login.png" alt="" />
     <h2 class="title">Ingrese sus datos para iniciar sesión</h2>

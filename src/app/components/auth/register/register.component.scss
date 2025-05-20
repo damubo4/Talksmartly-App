@@ -115,3 +115,29 @@ form {
 .icon {
   margin-right: 12px;
 }
+
+.section-language {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.input-language {
+  background-color: transparent !important;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-label {
+  color: white;
+  font-size: large;
+}
+
+option {
+  font-size: large;
+}
+
+select {
+  font-size: large;
+}

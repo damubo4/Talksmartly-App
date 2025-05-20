@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -37,6 +38,8 @@ export class LoginComponent {
   hide = true;
   spinner: boolean = false;
   role: any = '';
+  emailControl = new FormControl('es');
+  languages: string[] = ['🇪🇸', '🏴󠁧󠁢󠁥󠁮󠁧󠁿', '🇫🇷'];
 
   constructor(private formBuilder: FormBuilder) {
     this.FormLogin = this.formBuilder.group({

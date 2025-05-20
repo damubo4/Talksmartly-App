@@ -15,7 +15,6 @@
   color: white;
   width: 30px;
   font-size: 40px;
-  margin: 0 10px;
 }
 
 .icon-user:hover {
@@ -47,6 +46,32 @@
 .container-burger-menu {
   display: flex;
   gap: 15px;
+}
+
+.input-language {
+  background-color: transparent !important;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-label {
+  color: white;
+  font-size: large;
+}
+
+option {
+  font-size: large;
+}
+
+select {
+  font-size: large;
+}
+
+.container-icons-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 @media (max-width: 1024px) {

@@ -5,6 +5,7 @@ import {
   Validators,
   ReactiveFormsModule,
   FormsModule,
+  FormControl,
 } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -37,6 +38,8 @@ export class RecoverPasswordComponent {
   FormRecover: FormGroup;
   hide = true;
   spinner: boolean = false;
+  emailControl = new FormControl('es');
+  languages: string[] = ['🇪🇸', '🏴󠁧󠁢󠁥󠁮󠁧󠁿', '🇫🇷'];
 
   constructor(private formBuilder: FormBuilder) {
     this.FormRecover = this.formBuilder.group({

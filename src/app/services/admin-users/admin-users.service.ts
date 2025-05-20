@@ -1,37 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminUsersService {
   private http = inject(HttpClient);
+  private readonly apiUrl = environment.API_BASE_URL_USERS;
 
   constructor() {}
 
   addUsers(data: any) {
-    return this.http.post(
-      'https://app-users-talksmartly-academy.fly.dev/v1/auth/init-register',
-      data
-    );
+    return this.http.post(`${this.apiUrl}/auth/init-register`, data);
   }
 
   getUsers() {
-    return this.http.get(
-      'https://app-users-talksmartly-academy.fly.dev/v1/auth/users'
-    );
+    return this.http.get(`${this.apiUrl}/auth/users`);
   }
 
   editUser(id: any, data: any) {
-    return this.http.put(
-      `https://app-users-talksmartly-academy.fly.dev/v1/auth/users/${id}`,
-      data
-    );
+    return this.http.put(`${this.apiUrl}/auth/users/${id}`, data);
   }
 
   deleteUser(id: any) {
-    return this.http.delete(
-      `https://app-users-talksmartly-academy.fly.dev/v1/auth/users/${id}`
-    );
+    return this.http.delete(`${this.apiUrl}/auth/users/${id}`);
   }
 }

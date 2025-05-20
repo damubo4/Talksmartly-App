@@ -1,38 +1,28 @@
 <div class="calendar">
-  <div class="">
+  <!-- Selector de mes -->
+  @if (currentView == 'month') {
+  <div class="container-headers-controls">
     <div class="container-buttons-view">
       <button
         [ngClass]="{
-          'button-view-active': currentView == 'month',
-          'button-view-inactive': currentView == 'week'
-        }"
-        (click)="toggleView('month')"
-      >
-        Més
-      </button>
-      <button
-        [ngClass]="{
-          'button-view-active': currentView == 'week',
-          'button-view-inactive': currentView == 'month'
+          'button-view-active': currentView == 'month'
         }"
         (click)="toggleView('week')"
       >
         Semana
       </button>
     </div>
-  </div>
-  <!-- Selector de mes -->
-  @if (currentView == 'month') {
-  <div class="calendar-header">
-    <span (click)="prevMonth()" class="material-symbols-outlined arrow">
-      arrow_back_ios
-    </span>
-    <h2 class="month-name">
-      {{ currentMonthName | titlecase }} {{ currentYear }}
-    </h2>
-    <span (click)="nextMonth()" class="material-symbols-outlined arrow">
-      arrow_forward_ios
-    </span>
+    <div class="calendar-header">
+      <span (click)="prevMonth()" class="material-symbols-outlined arrow">
+        arrow_back_ios
+      </span>
+      <h2 class="month-name">
+        {{ currentMonthName | titlecase }} {{ currentYear }}
+      </h2>
+      <span (click)="nextMonth()" class="material-symbols-outlined arrow">
+        arrow_forward_ios
+      </span>
+    </div>
   </div>
 
   <!-- Días de la semana -->
@@ -92,15 +82,30 @@
   </div>
 
   } @else if (currentView == 'week') {
-  <div class="calendar-header">
-    <span (click)="prevWeek()" class="material-symbols-outlined arrow">
-      arrow_back_ios
-    </span>
+  <div class="container-headers-controls">
+    <div class="container-buttons-view">
+      <button
+        [ngClass]="{
+              'button-view-active': currentView == 'week',
+              
+            }"
+        (click)="toggleView('month')"
+      >
+        Mes
+      </button>
+    </div>
+    <div class="calendar-header">
+      <span (click)="prevWeek()" class="material-symbols-outlined arrow">
+        arrow_back_ios
+      </span>
 
-    <h2>{{ currentMonthByWeek | titlecase }} {{ currentYear }}</h2>
-    <span (click)="nextWeek()" class="material-symbols-outlined arrow">
-      arrow_forward_ios
-    </span>
+      <h2 class="month-name">
+        {{ currentMonthByWeek | titlecase }} {{ currentYear }}
+      </h2>
+      <span (click)="nextWeek()" class="material-symbols-outlined arrow">
+        arrow_forward_ios
+      </span>
+    </div>
   </div>
 
   <div class="calendar-grid-header">

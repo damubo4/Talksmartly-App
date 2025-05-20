@@ -1,0 +1,9 @@
+{
+  "login": {
+    "title": "Enter your details to log in",
+    "label_email": "Email",
+    "label_password": "Password",
+    "message_password": "I forgot my password",
+    "button": "Login"
+  }
+}

@@ -21,7 +21,7 @@
         }
       </span>
     </div>
-    <div>
+    <div class="container-icons-right">
       <span
         class="material-symbols-outlined icon-user"
         [matMenuTriggerFor]="menu"
@@ -39,6 +39,15 @@
       >
         help
       </span>
+      <!-- <div class="section-language">
+        <div class="input-language">
+          <select placeholder="Language">
+            @for (language of languages; track language) {
+            <option [value]="language">{{ language }}</option>
+            }
+          </select>
+        </div>
+      </div> -->
       <mat-menu #menu="matMenu">
         <button (click)="logout()" mat-menu-item>Log Out</button>
       </mat-menu>

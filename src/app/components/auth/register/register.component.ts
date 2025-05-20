@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -43,6 +44,8 @@ export class RegisterComponent implements OnInit {
   samePasswords = true;
   textError = false;
   spinner: boolean = false;
+  emailControl = new FormControl('es');
+  languages: string[] = ['🇪🇸', '🏴󠁧󠁢󠁥󠁮󠁧󠁿', '🇫🇷'];
 
   constructor(private formBuilder: FormBuilder) {
     this.FormRegister = this.formBuilder.group({

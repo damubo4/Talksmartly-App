@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuComponent } from '../../../modals/menu/menu.component';
 import { TitleHeaderService } from '../../../services/title-header/title-header.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,8 @@ export class HeaderComponent {
   role: any = '';
   currentLevel!: any;
   title: string | null = '';
+  emailControl = new FormControl('es');
+  languages: string[] = ['🇪🇸', '🏴󠁧󠁢󠁥󠁮󠁧󠁿', '🇫🇷'];
 
   constructor() {
     const data: any = sessionStorage.getItem('user');

@@ -1,0 +1,9 @@
+{
+  "login": {
+    "title": "Ingrese sus datos para iniciar sesión",
+    "label_email": "Email",
+    "label_password": "Contraseña",
+    "message_password": "Olvidé mi contraseña",
+    "button": "Ingresar"
+  }
+}
