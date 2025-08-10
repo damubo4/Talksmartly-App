@@ -28,7 +28,7 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 
 ```bash
 # 1️⃣ Clonar el repositorio
-git clone https://github.com/TalkSmartly/talksmartly-app.git
+git clone https://github.com/damubo4/Talksmartly-App
 
 # 2️⃣ Entrar al directorio del proyecto
 cd talksmartly-app
